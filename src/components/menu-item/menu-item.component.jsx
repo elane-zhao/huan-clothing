@@ -30,6 +30,9 @@ const MenuItem = ({
   </div>
 );
 
-// withRouter is a high order function which will power up the MenuItem component with access to history, match, location props
+// withRouter is a high order component(function) which will power up the MenuItem component
+// with access to history, match, location props
 // without having to use a bad pattern called Prop Drilling or Prop Tunneling
+// higher order component is just a function, which takes another component as argument,
+// transforms it into another component and returns the transformed component
 export default withRouter(MenuItem);
