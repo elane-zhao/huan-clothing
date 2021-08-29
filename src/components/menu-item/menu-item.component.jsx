@@ -1,7 +1,6 @@
 import React from 'react';
 import './menu-item.styles.scss';
 import { withRouter } from 'react-router';
-import { match } from 'esquery';
 
 const MenuItem = ({
   title,
