@@ -3,6 +3,7 @@ import './header.styles.scss';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/huan_logo.svg';
 import { auth } from '../../firebase/firebase.utils';
+import { connect } from 'react-redux'; // higher order component
 
 const Header = ({ currentUser }) => (
   <div className="header">
@@ -27,4 +28,9 @@ const Header = ({ currentUser }) => (
   </div>
 );
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+// we use the conect() and mapStateToProps() wherever we want to get props from the redux reducer
+export default connect(mapStateToProps)(Header); // higher order component
