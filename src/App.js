@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
@@ -60,14 +60,25 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage}></Route>
           <Route path="/shop" component={ShopPage}></Route>
           <Route
+            exact
             path="/signin"
-            component={SignInAndSignUpPage}
+            render={() =>
+              this.props.currentUser ? (
+                <Redirect to="/" />
+              ) : (
+                <SignInAndSignUpPage />
+              )
+            }
           ></Route>
         </Switch>
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
 
 // dispatch is a prop
 const mapDispatchToProps = (dispatch) => ({
@@ -76,4 +87,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // as we don't need curentUser prop in App component, so the 1st param is null, no need for mapStateToProps function
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
