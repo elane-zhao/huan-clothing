@@ -82,9 +82,10 @@ const mapStateToProps = ({ user }) => ({
 
 // dispatch is a prop
 const mapDispatchToProps = (dispatch) => ({
-  // prop name
+  // setUser is prop name(is a function!!!), map this dispatch action to setUser prop function
   setUser: (user) => dispatch(setCurrentUser(user)),
 });
 
-// as we don't need curentUser prop in App component, so the 1st param is null, no need for mapStateToProps function
+// if we don't need curentUser prop in App component itself,
+// then the 1st param(mapStateToProps function) is null
 export default connect(mapStateToProps, mapDispatchToProps)(App);
