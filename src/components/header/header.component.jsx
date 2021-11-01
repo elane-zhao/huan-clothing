@@ -36,8 +36,8 @@ const mapStateToProps = ({
   user: { currentUser },
   cart: { hidden },
 }) => ({
-  currentUser: currentUser,
-  hidden: hidden,
+  currentUser,
+  hidden,
 });
 
 // we use the conect() and mapStateToProps() wherever we want to get props from the redux reducer
