@@ -9,6 +9,8 @@ import {
 import './sign-up.styles.scss';
 
 class SignUp extends React.Component {
+  mounted = false;
+
   constructor() {
     super();
 
@@ -18,6 +20,13 @@ class SignUp extends React.Component {
       password: '',
       confirmPassword: '',
     };
+  }
+
+  componentDidMount() {
+    this.mounted = true;
+  }
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   handleSubmit = async (event) => {
@@ -38,12 +47,14 @@ class SignUp extends React.Component {
       await createUserProfileDocument(user, { displayName });
 
       // reset our state and clear the form
-      this.setState({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      });
+      if (this.mounted) {
+        this.setState({
+          displayName: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        });
+      }
     } catch (error) {
       console.error(error);
     }
